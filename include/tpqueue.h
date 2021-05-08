@@ -5,13 +5,13 @@
 
 template<typename T>
 class TPQueue {
-  private:
+ private:
     T* arr;
     int size;
     int begin,
         end;
     int count;
-public:
+ public:
     TPQueue(int = 100);
     ~TPQueue();
     void push(const T&);
@@ -24,20 +24,17 @@ public:
 template<typename T>
 TPQueue<T>::TPQueue(int sizeQueue) :
     size(sizeQueue),
-    begin(0), end(0), count(0)
-{
+    begin(0), end(0), count(0) {
     arr = new T[size + 1];
 }
 
 template<typename T>
-TPQueue<T>::~TPQueue()
-{
+TPQueue<T>::~TPQueue() {
     delete[] arr;
 }
 
 template<typename T>
-void TPQueue<T>::push(const T& item)
-{
+void TPQueue<T>::push(const T& item) {
     assert(count < size);
 
     int i = end;
@@ -47,7 +44,7 @@ void TPQueue<T>::push(const T& item)
     for (int j = end - 1; j >= i; j--) {
         arr[j + 1] = arr[j];
     }
-    arr[i] = item; 
+    arr[i] = item;
     end++;
     count++;
 
@@ -55,8 +52,7 @@ void TPQueue<T>::push(const T& item)
 }
 
 template<typename T>
-T TPQueue<T>::pop()
-{
+T TPQueue<T>::pop() {
     assert(count > 0);
     T item = arr[begin++];
     count--;
@@ -66,21 +62,18 @@ T TPQueue<T>::pop()
 }
 
 template<typename T>
-T TPQueue<T>::get() const
-{
+T TPQueue<T>::get() const {
     assert(count > 0);
     return arr[begin];
 }
 
 template<typename T>
-bool TPQueue<T>::isEmpty() const
-{
+bool TPQueue<T>::isEmpty() const {
     return count == 0;
 }
 
 template<typename T>
-bool TPQueue<T>::isFull() const
-{
+bool TPQueue<T>::isFull() const {
     return count == size;
 }
 
